@@ -9,6 +9,7 @@ body{
     height:100vh;
     display: flex;
     background: linear-gradient(135deg, #667eea, #764ba2);
+    background-image: url(back.jpg);
 }
 .container{
     border: 2px solid black;
