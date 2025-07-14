@@ -1,13 +1,12 @@
-const btn = document.querySelector("button");
-const par = document.querySelector(".temp");
-
-btn.addEventListener('click',call);
+const homenav = document.querySelector("button");
+homenav.addEventListener('click',call);
+const iname = document.querySelector("#iname");
+const h2 = document.querySelector(".welhome");
 
 function call(){
-    if(par.classList.contains('temp')){
-        par.classList.remove('temp');
-    }
-    else{
-        par.classList.add('temp');
-    }
+    window.location.href = 'homepage.html';
+    h2.textContent = "Welcome" + iname.value;
+    alert(h2.textContent);
 }
+
+
