@@ -72,6 +72,12 @@ form input{
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+.tempp{
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
 button{
     grid-column: span 2;
