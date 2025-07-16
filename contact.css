@@ -142,6 +142,7 @@ table{
   cursor: pointer;
   transition: background 0.3s;
    background-color: green;
+   margin: 5px;
 }
 .delete{
     grid-column: span 2;
@@ -153,6 +154,7 @@ table{
   cursor: pointer;
   transition: background 0.3s;
     background-color: red;
+    margin: 5px;
 }
 
 @media screen and (max-width: 600px) {
