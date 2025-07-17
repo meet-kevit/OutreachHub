@@ -14,7 +14,7 @@
         <ul class="nav-links">
           <li><a href="#">Home</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="index.html" style="color: red;">LogOut</a></li>
+          <li><a style="color: red;cursor: pointer;" id="lg">LogOut</a></li>
         </ul>
       </nav>
     </div>
@@ -134,5 +134,13 @@
     <h5>&copy;All rights reserved</h5>
   </footer>
 </body>
-<script src="script.js"></script>
+<script>
+  const lg = document.querySelector("#lg");
+  lg.addEventListener('click',logout);
+  function logout(){
+    alert(localStorage.getItem('user')+" will be logged out");
+    localStorage.removeItem('user');
+    window.location.href = 'index.html';
+}
+</script>
 </html>
