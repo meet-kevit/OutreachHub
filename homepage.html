@@ -14,6 +14,8 @@
         <ul class="nav-links">
           <li><a href="#">Home</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="campaigns.html">Campaigns</a></li>
+          <li><a href="message.html">Message</a></li>
           <li><a style="color: red;cursor: pointer;" id="lg">LogOut</a></li>
         </ul>
       </nav>
@@ -137,6 +139,10 @@
 <script>
   const lg = document.querySelector("#lg");
   lg.addEventListener('click',logout);
+  const fl = document.querySelector("#welhome");
+  let curr = JSON.parse(localStorage.getItem('user'));
+
+  fl.textContent = "Welcome "+curr["name"];
   function logout(){
     alert(localStorage.getItem('user')+" will be logged out");
     localStorage.removeItem('user');
