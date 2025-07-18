@@ -29,6 +29,13 @@ fetch(url).
         let ebt = document.createElement('button');
         ebt.textContent = 'Edit';
         ebt.setAttribute('class','edit');
+        
+        let view = document.createElement('button');
+        view.textContent = 'View';
+        view.setAttribute('class','vbt');
+        view.addEventListener('click',() => {
+            window.location.href = 'view.html';
+        });
 
         let dbt = document.createElement('button');
         dbt.textContent = 'Delete';
@@ -54,6 +61,7 @@ fetch(url).
             window.location.href = 'editc.html';
         });
 
+       op.appendChild(view);
        op.appendChild(ebt);
        op.appendChild(dbt);
 
@@ -105,6 +113,13 @@ function add(){
         let ebt = document.createElement('button');
         ebt.textContent = 'Edit';
         ebt.setAttribute('class','edit');
+        
+        let view = document.createElement('button');
+        view.textContent = 'View';
+        view.setAttribute('class','vbt');
+        view.addEventListener('click',() => {
+            window.location.href = 'view.html';
+        });
 
         let dbt = document.createElement('button');
         dbt.textContent = 'Delete';
@@ -130,6 +145,7 @@ function add(){
             window.location.href = 'editc.html';
         });
 
+       op.appendChild(view);
        op.appendChild(ebt);
        op.appendChild(dbt);
 

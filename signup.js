@@ -1,4 +1,4 @@
-import { users } from './script.js';
+const url = `https://68779c3edba809d901f02af6.mockapi.io/login`;
 
     const sbtn = document.querySelector(".btn");
     const email = document.querySelector("#email");
@@ -6,8 +6,10 @@ import { users } from './script.js';
     const cpass = document.querySelector("#cpass");
     const fname = document.querySelector("#iname");
     sbtn.addEventListener('click',sign);
-
-    function sign(fname,email,pass,cpass,users){
+    
+    function sign(e){
+      
+       e.preventDefault();
        if(!fname.value.trim() || !email.value.trim() || !pass.value.trim() || !cpass.value.trim()){
         alert("Enter all value");
         return;
@@ -16,12 +18,37 @@ import { users } from './script.js';
         alert("both password don't match");
         return;
        } 
-       let newUserId = "o" + (Object.keys(users).length + 1); 
-       users[newUserId] = {
-       email: email.value,
-       pass: pass.value
+       console.log(email.value);
+       let newUserId = 5; 
+
+       const obj = {
+           email: email.value.trim(),
+           name: fname.value.trim(),
+           password: pass.value.trim(),
+           contact: '9999999999999999999',
+           id:'00'
       };
-      window.location.href = 'homepage.html';
-      alert("hhhh");
+
+      fetch(`${url}`,{
+        method:'POST',
+        heeader: {'Content-Type' : 'application/json'},
+        body: JSON.stringify(obj)
+      })
+      .then(response => {
+        if(!response.ok){
+          throw new Error('Sign up failed');
+        }
+        return response.json();
+      })
+      .then(data => {
+        alert("Sign up sccesssful!");
+        localStorage.setItem('user',JSON.stringify(obj));
+         window.location.href = 'homepage.html';
+         alert("hhhh");
+      })
+      .catch(err => {
+        alert("Error sign up failed",err);
+      })
+     
     }
     

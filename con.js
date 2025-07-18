@@ -23,6 +23,10 @@ function add(e){
     ebt.textContent = 'Edit';
     ebt.setAttribute('class','edit');
 
+    let view = document.createElement('button');
+    view.textContent = 'View';
+    view.setAttribute('class','edit');
+
     let dbt = document.createElement('button');
     dbt.textContent = 'Delete';
     dbt.setAttribute('class','delete');
@@ -46,6 +50,7 @@ function add(e){
         }
     });
 
+    op.appendChild(view);
     op.appendChild(ebt);
     op.appendChild(dbt);
 
