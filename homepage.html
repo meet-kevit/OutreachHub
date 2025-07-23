@@ -140,7 +140,7 @@
   const lg = document.querySelector("#lg");
   lg.addEventListener('click',logout);
   const fl = document.querySelector("#welhome");
-  let curr = JSON.parse(localStorage.getItem('user'));
+  let curr = localStorage.getItem('user');
 
   fl.textContent = "Welcome "+curr["name"];
   function logout(){
