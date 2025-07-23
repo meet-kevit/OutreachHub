@@ -1,71 +1,78 @@
-let tab = document.querySelector("table").querySelector("tbody");
-let btn = document.querySelector("button");
-const ph = document.querySelector("#phone-number");
-const fullname = document.querySelector("#fullname");
-const email = document.querySelector("#email");
+// let tab = document.querySelector("table").querySelector("tbody");
+// let btn = document.querySelector("button");
+// const ph = document.querySelector("#phone-number");
+// const fullname = document.querySelector("#fullname");
+// const email = document.querySelector("#email");
 
-btn.addEventListener('click',add);
+// btn.addEventListener('click',add);
 
-function add(e){
-    e.preventDefault();
-    let tr = document.createElement('tr');
-    let one = document.createElement('td');
-    let two = document.createElement('td');
-    let three = document.createElement('td');
-    let op = document.createElement('td');
+// function add(e){
+//     e.preventDefault();
+//     let tr = document.createElement('tr');
+//     let one = document.createElement('td');
+//     let two = document.createElement('td');
+//     let three = document.createElement('td');
+//     let op = document.createElement('td');
 
-    if(!ph.value.trim() || !email.value.trim() || !fullname.value.trim()){
-        alert("Enter all inputs");
-        return;
-    }
+//     if(!ph.value.trim() || !email.value.trim() || !fullname.value.trim()){
+//         alert("Enter all inputs");
+//         return;
+//     }
 
-    let ebt = document.createElement('button');
-    ebt.textContent = 'Edit';
-    ebt.setAttribute('class','edit');
+//     let ebt = document.createElement('button');
+//     ebt.textContent = 'Edit';
+//     ebt.setAttribute('class','edit');
 
-    let view = document.createElement('button');
-    view.textContent = 'View';
-    view.setAttribute('class','edit');
+//     let view = document.createElement('button');
+//     view.textContent = 'View';
+//     view.setAttribute('class','edit');
 
-    let dbt = document.createElement('button');
-    dbt.textContent = 'Delete';
-    dbt.setAttribute('class','delete');
-    dbt.addEventListener('click', function () {
-        tr.remove();  
-    });
+//     let dbt = document.createElement('button');
+//     dbt.textContent = 'Delete';
+//     dbt.setAttribute('class','delete');
+//     dbt.addEventListener('click', function () {
+//         tr.remove();  
+//     });
 
-    ebt.addEventListener('click',() => {
-        if(ebt.textContent === 'Edit'){
-            one.innerHTML = `<input type="text" class="tempp" placeholder="Enter new mobile number" value="${one.textContent}">`;
-           two.innerHTML = `<input type="email" class="tempp" placeholder="Enter new email" value="${two.textContent}">`;
-           three.innerHTML = `<input type="text" class="tempp" placeholder="Enter new name" value="${three.textContent}">`;
-           ebt.textContent = 'Save';
-        }
-        else
-        {
-            one.textContent = `${one.querySelector('input').value}`;
-            two.textContent = `${two.querySelector('input').value}`;
-            three.textContent = `${three.querySelector('input').value}`;
-            ebt.textContent = 'Edit';
-        }
-    });
+//     ebt.addEventListener('click',() => {
+//         if(ebt.textContent === 'Edit'){
+//             one.innerHTML = `<input type="text" class="tempp" placeholder="Enter new mobile number" value="${one.textContent}">`;
+//            two.innerHTML = `<input type="email" class="tempp" placeholder="Enter new email" value="${two.textContent}">`;
+//            three.innerHTML = `<input type="text" class="tempp" placeholder="Enter new name" value="${three.textContent}">`;
+//            ebt.textContent = 'Save';
+//         }
+//         else
+//         {
+//             one.textContent = `${one.querySelector('input').value}`;
+//             two.textContent = `${two.querySelector('input').value}`;
+//             three.textContent = `${three.querySelector('input').value}`;
+//             ebt.textContent = 'Edit';
+//         }
+//     });
 
-    op.appendChild(view);
-    op.appendChild(ebt);
-    op.appendChild(dbt);
+//     op.appendChild(view);
+//     op.appendChild(ebt);
+//     op.appendChild(dbt);
 
-    one.textContent = ph.value;
-    two.textContent = email.value;
-    three.textContent = fullname.value;
+//     one.textContent = ph.value;
+//     two.textContent = email.value;
+//     three.textContent = fullname.value;
 
-    tr.appendChild(one);
-    tr.appendChild(two);
-    tr.appendChild(three);
-    tr.appendChild(op);
+//     tr.appendChild(one);
+//     tr.appendChild(two);
+//     tr.appendChild(three);
+//     tr.appendChild(op);
 
-    tab.appendChild(tr);
+//     tab.appendChild(tr);
 
-    ph.value = '';
-    email.value = '';
-    fullname.value = '';
+//     ph.value = '';
+//     email.value = '';
+//     fullname.value = '';
+// }
+let funcs = [];
+for (var i = 0; i < 3; i++) {
+funcs[i] = function () {
+return i;
+};
 }
+console.log(funcs[0]());
