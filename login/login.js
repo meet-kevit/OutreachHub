@@ -27,7 +27,7 @@ loginForm.addEventListener('submit', async (e) => {
           let o = JSON.parse(payload);
           localStorage.setItem('user', o.username);
           localStorage.setItem('access_token', data.access_token);
-          window.location.href = './homepage.html';
+          window.location.href = 'homepage/homepage.html';
         } 
         else {
           alert(data.message || 'Invalid credentials');
