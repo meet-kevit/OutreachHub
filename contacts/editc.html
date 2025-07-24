@@ -120,7 +120,7 @@
 <script>
   const form = document.getElementById('editContactForm');
   const obj = JSON.parse(localStorage.getItem('tempedit'));
-  const url = `https://68779c3edba809d901f02af6.mockapi.io/contact`;
+  const url = `http://localhost:3000/contacts`;
     document.getElementById('name').value = obj['name'];
     document.getElementById('email').value = obj.email;
     document.getElementById('phone').value = obj.ph;
@@ -132,16 +132,17 @@
     const c = document.getElementById('phone').value;
 
     const oa = {
-        contact: document.getElementById('phone').value,
-        email: document.getElementById('email').value,
-        name: document.getElementById('name').value,
-        id:obj.id
+        data:[
+           {phoneNumber: document.getElementById('phone').value},
+           {id: document.getElementById('email').value},
+           {name: document.getElementById('name').value}
+        ]
     }
 
-    fetch(`${url}/${obj.id}`,{
+    fetch(`${url}/${oa.data.phoeNumber}`,{
         method : 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(oa)
+        body: JSON.stringify(oa.data[0])
     })
     .then(response => response.json())
     .then(() => {
@@ -153,7 +154,7 @@
 
     alert('Contact updated successfully!');
     closeModal();
-    window.location.href = "contact.html";
+    
   });
 
   function closeModal() {

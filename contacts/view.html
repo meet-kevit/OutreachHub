@@ -119,7 +119,7 @@
 <script>
   const form = document.getElementById('editContactForm');
   const obj = JSON.parse(localStorage.getItem('tempedit'));
-    document.getElementById('name').textContent = obj['name'];
+    document.getElementById('name').textContent = obj.name;
     document.getElementById('email').textContent = obj.email;
     document.getElementById('phone').textContent = obj.ph;
 
