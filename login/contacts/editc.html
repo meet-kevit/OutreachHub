@@ -104,7 +104,7 @@
       <input type="text" id="name" required />
 
       <label for="email">Email</label>
-      <input type="email" id="email" required />
+      <input type="text" id="email" required />
 
       <label for="phone">Phone</label>
       <input type="tel" id="phone" required />
@@ -120,7 +120,7 @@
 <script>
   const form = document.getElementById('editContactForm');
   const obj = JSON.parse(localStorage.getItem('tempedit'));
-  const url = `http://localhost:3000/contacts`;
+  const url = 'http://localhost:3000/contacts';
     document.getElementById('name').value = obj['name'];
     document.getElementById('email').value = obj.email;
     document.getElementById('phone').value = obj.ph;
@@ -131,34 +131,37 @@
     const b = document.getElementById('email').value;
     const c = document.getElementById('phone').value;
 
-    const oa = {
-        data:[
-           {phoneNumber: document.getElementById('phone').value},
-           {id: document.getElementById('email').value},
-           {name: document.getElementById('name').value}
-        ]
-    }
-
-    fetch(`${url}/${oa.data.phoeNumber}`,{
+    const contact = {
+      name: a,
+      phoneNumber: c,
+      id:b,
+      tags: null
+    };
+     
+    fetch(`${url}/${obj.id}`,{
         method : 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(oa.data[0])
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('access_token')}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(contact)
     })
     .then(response => response.json())
     .then(() => {
         alert("Data updated");
+        console.log("Data updated");
+        localStorage.removeItem('tempedit');
+        window.location.href = "contact.html";
     })
     .catch(err => {
         alert("Sorry no update!");
     });
 
-    alert('Contact updated successfully!');
-    closeModal();
+    
+    
     
   });
 
   function closeModal() {
     document.getElementById('editModal').style.display = 'none';
+    localStorage.removeItem('tempedit');
     window.location.href = "contact.html";
   }
 </script>
