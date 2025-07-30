@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use('/products',productRoutes);
 app.use('/orders',ordersRoutes);
 
-mongoose.connect('mongodb+srv://meetmadani:meetmadani@cluster0.k81uvvx.mongodb.net/');
+mongoose.connect('mongodb+srv://@cluster0.k81uvvx.mongodb.net/');
 
 
 
