@@ -3,6 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+select{
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+}
 body{
     justify-content: center;
     align-items: center;

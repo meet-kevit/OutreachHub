@@ -7,7 +7,7 @@ loginForm.addEventListener('submit', async (e) => {
       const password = document.getElementById('password').value.trim();
  
       try {
-        const response = await fetch('http://localhost:3000/auth/login', {
+        const response = await fetch('http://localhost:3000/users/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -16,17 +16,14 @@ loginForm.addEventListener('submit', async (e) => {
         });
  
         const data = await response.json();
-        console.log('Login response:', data);
-        console.log(data.access_token);
-        console.log(data.username);
-        console.log(data.role);
-          if (data) {
-          const jwtToken= data.access_token;
+        
+          if (data['user'] !== undefined) {
+          const jwtToken= data.token;
           const payload = atob(jwtToken.split('.')[1]);
           console.log("payload", payload);
           let o = JSON.parse(payload);
           localStorage.setItem('user', o.username);
-          localStorage.setItem('access_token', data.access_token);
+          localStorage.setItem('access_token', data.token);
           window.location.href = 'homepage/homepage.html';
         } 
         else {
