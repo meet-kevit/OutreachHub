@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
+const CORS = require('cors');
+app.use(CORS());
 
 //required routes
 const productRoutes = require('./api/routes/product');
-const ordersRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/user');
 
 //required middlewares
 const morgan = require('morgan');
@@ -16,22 +18,10 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 app.use('/products',productRoutes);
-app.use('/orders',ordersRoutes);
+app.use('/users',userRoutes);
 
-mongoose.connect('mongodb+srv://@cluster0.k81uvvx.mongodb.net/');
+mongoose.connect('mongodb+srv://meetmadani:meetmadani@cluster0.k81uvvx.mongodb.net/');
 
-
-
-//solve CORS(Cross-Origin Resource Sharing) issue or give Access to apis 
-app.use((req,res,next) => {
-    res.header("Access-Control-Allow-Origin","*");
-    res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    if(req.method === 'OPTIONS'){
-        res.header("Access-Control-Allow-Methods","PUT, POST, PATCH, DELETE, GET");
-        return res.status(200).json({});
-    }
-    next();
-})
 
 
 //Error handling

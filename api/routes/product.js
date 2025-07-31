@@ -8,11 +8,15 @@ router.get('/',(req,res,next) => {
     .select('_id name price')
     .then(products =>{
         res.status(200).json({
-            message:"GET request for specific product succeeded",
+            message:"GET request for all products succeeded",
             products:products.map(doc => ({
                 _id:doc._id,
                 name: doc.name,
-                price:doc.price
+                price:doc.price,
+                about:{
+                    type:'GET',
+                    url:'http://loclhost:3000/products/'+doc._id
+                }
             }))
             
         });
