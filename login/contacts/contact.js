@@ -200,6 +200,7 @@ fetch(url, arg).
         res.data.forEach(cur => {
 
             let tr = document.createElement('tr');
+            
             let one = document.createElement('td');
             let two = document.createElement('td');
             let three = document.createElement('td');
