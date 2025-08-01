@@ -6,6 +6,8 @@ app.use(CORS());
 //required routes
 const productRoutes = require('./api/routes/product');
 const userRoutes = require('./api/routes/user');
+const checkAuth = require('./api/middleware/check-auth');
+const contactRoutes = require('./api/routes/contact');
 
 //required middlewares
 const morgan = require('morgan');
@@ -19,7 +21,8 @@ app.use(bodyParser.json());
 
 app.use('/products',productRoutes);
 app.use('/users',userRoutes);
-
+app.use('/auth',checkAuth);
+app.use('/contacts',contactRoutes);
 mongoose.connect('mongodb+srv://meetmadani:meetmadani@cluster0.k81uvvx.mongodb.net/');
 
 
