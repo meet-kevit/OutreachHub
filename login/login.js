@@ -18,13 +18,26 @@ loginForm.addEventListener('submit', async (e) => {
         const data = await response.json();
         
           if (data['user'] !== undefined) {
-          const jwtToken= data.token;
-          const payload = atob(jwtToken.split('.')[1]);
-          console.log("payload", payload);
-          let o = JSON.parse(payload);
-          localStorage.setItem('user', o.username);
-          localStorage.setItem('access_token', data.token);
-          window.location.href = 'homepage/homepage.html';
+          
+          
+          const protRoute = await fetch('http://localhost:3000/auth',{
+            method:'POST',
+            headers:{
+              'Authorization': `Bearer ${data.token}`
+            },
+          })
+          if( protRoute.status === 200) {
+             const jwtToken= data.token;
+            const payload = atob(jwtToken.split('.')[1]);
+            console.log("payload", payload);
+            let o = JSON.parse(payload);
+            localStorage.setItem('user', o.username);
+            localStorage.setItem('access_token', data.token);
+             window.location.href = 'homepage/homepage.html';
+          }
+          else {
+            alert('Access denied. Please log in again.');
+          }
         } 
         else {
           alert(data.message || 'Invalid credentials');
@@ -35,4 +48,5 @@ loginForm.addEventListener('submit', async (e) => {
         console.error('Login error:', error);
         alert('Failed to connect to server.');
       }
+      console.log(loginForm.childNodes[8].childNodes.value);
     });

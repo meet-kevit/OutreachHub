@@ -7,6 +7,7 @@ select{
     text-align: center;
     padding: 10px;
     font-size: 15px;
+    border: 1px solid black;
 }
 body{
     justify-content: center;
