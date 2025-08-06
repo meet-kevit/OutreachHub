@@ -24,12 +24,12 @@ app.use(bodyParser.json());
 
 
 app.use('/users',userRoutes);
-app.use('/auth',checkAuth);
+// app.use('/auth',checkAuth);
 app.use('/contacts',contactRoutes);
 app.use('/workspaces',workspaceRoutes);
 app.use('/messages',messageRoutes);
 app.use('/campaigns',campaignRoutes);
-mongoose.connect('mongodb+srv://-----------@cluster0.k81uvvx.mongodb.net/');
+mongoose.connect('mongodb+srv://-------------@cluster0.k81uvvx.mongodb.net/');
 
 
 

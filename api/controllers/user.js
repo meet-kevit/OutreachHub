@@ -21,6 +21,9 @@ exports.getAllUsers = (req,res,next) => {
     });
 };
 
+exports.signOut = (req,res,next) => {
+    
+}
 exports.signupUser = (req,res,next) => {
 
     User.find({username:req.body.username})

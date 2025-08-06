@@ -5,7 +5,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const checkAuth = require('../middleware/check-auth');
-
+const logoutController = require('../controllers/logout');
 const userController = require('../controllers/user');
 const user = require('../models/user');
 
@@ -21,4 +21,5 @@ router.patch('/:uid',userController.updateUser);
 
 router.get('/:uid',userController.getById);
 
+router.post('/logout',logoutController.logOut);
 module.exports = router;
