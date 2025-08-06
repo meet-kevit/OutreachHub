@@ -10,7 +10,8 @@ exports.getAllUsers = (req,res,next) => {
         res.status(200).json({
             users:users.map(doc => ({
                 user:doc,
-            }))
+            })),
+            extra:req.userData
         })
     })
     .catch(err => {
@@ -23,7 +24,6 @@ exports.getAllUsers = (req,res,next) => {
 exports.signupUser = (req,res,next) => {
 
     User.find({username:req.body.username})
-    .exec()
     .then(user => {
         if(user.length >=1){
             return res.status(409).json({
@@ -42,8 +42,7 @@ exports.signupUser = (req,res,next) => {
                 _id: new mongoose.Types.ObjectId(),
                 username:req.body.username,
                 password:hash,
-                workspaces:Array.isArray(req.body.workspaces) ? req.body.workspaces : [],
-                businessId: req.body.businessId || null,
+                workspaces:Array.isArray(req.body.workspaces) ? req.body.workspaces : []
             });
             user.save()
             .then(result => {
@@ -120,7 +119,7 @@ exports.loginUser = (req,res,next) => {
                     else{
                          res.status(401).json({
                         message:"Auth failed",
-                        ord:1
+                        ord:req.body
                     })
                     }
                 }

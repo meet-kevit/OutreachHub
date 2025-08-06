@@ -1,22 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const monoose = require('mongoose');
-const Workspace = require('../models/Workspace');
+const workspaceController = require('../controllers/workspace');
 
-router.get('/',(req,res,next) => {
-    Workspace.find()
-    .then(wos => {
-        res.status(200).json({
-            Workspaces:wos.map(doc => ({
-                data:doc
-            }))
-        })
-    })
-    .catch(err => {
-        res.status(401).json({
-            error:err
-        })
-    })
-})
+router.get('/',workspaceController.getWorkspaces);
+
+router.post('/',workspaceController.addWorkspace);
+
+router.delete('/:id',workspaceController.deleteWorkspace);
 
 module.exports = router;
