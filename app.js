@@ -29,7 +29,7 @@ app.use('/contacts',contactRoutes);
 app.use('/workspaces',workspaceRoutes);
 app.use('/messages',messageRoutes);
 app.use('/campaigns',campaignRoutes);
-mongoose.connect('mongodb+srv://-------------@cluster0.k81uvvx.mongodb.net/');
+mongoose.connect('mongodb+srv://meetmadani:meetmadani@cluster0.k81uvvx.mongodb.net/');
 
 
 

@@ -2,28 +2,53 @@ const User = require('../models/user');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const tokenDB = require('../models/logout');
 
 exports.getAllUsers = (req,res,next) => {
-    User.find()
-    .select('_id username workspaces businessId createdAt role right')
-    .then(users => {
-        res.status(200).json({
-            users:users.map(doc => ({
-                user:doc,
-            })),
-            extra:req.userData
+    // if(tokenDB.findOne({token:req.authorization})){
+    //     return res.status(401).json({
+    //         error:req.headers.authorization,
+    //         tone:req.authorization
+    //     });
+    // }
+    let yes = false;
+    tokenDB.findOne({token:req.headers.authorization})
+    .exec()
+    .then(ans => {
+           if(ans){
+               yes = true;
+               return res.status(401).json({
+               error:"Token is invalid bro"
+            });
+           }
+           else{
+                 User.find()
+                .select('_id username workspaces businessId createdAt role right')
+                .then(users => {
+                      res.status(200).json({
+                      users:users.map(doc => ({
+                      user:doc,
+                      })),
+                      extra:req.userData
+                    })
+                })
+               .catch(err => {
+                     console.log(err);
+                     res.status(500).json({
+                         error:err
+                     });
+                });
+           }
+    })
+    .catch(error => {
+        console.log(error);
+        return res.status(401).json({
+            error:error
         })
     })
-    .catch(err => {
-        res.status(500).json({
-            error:err
-        });
-    });
 };
 
-exports.signOut = (req,res,next) => {
-    
-}
+
 exports.signupUser = (req,res,next) => {
 
     User.find({username:req.body.username})
@@ -105,7 +130,7 @@ exports.loginUser = (req,res,next) => {
                     })
                 }
                 else{
-                    if(result){
+                    if(result){ 
                         const token = jwt.sign({
                             username:user.username,
                             id:user._id

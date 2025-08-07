@@ -9,7 +9,7 @@ const logoutController = require('../controllers/logout');
 const userController = require('../controllers/user');
 const user = require('../models/user');
 
-router.get('/',checkAuth,userController.getAllUsers);
+router.get('/',userController.getAllUsers);
 
 router.post("/signup",userController.signupUser);
 
@@ -22,4 +22,5 @@ router.patch('/:uid',userController.updateUser);
 router.get('/:uid',userController.getById);
 
 router.post('/logout',logoutController.logOut);
+
 module.exports = router;

@@ -9,13 +9,14 @@ module.exports = (req,res,next) => {
     const token = req.headers.authorization;
     logout.findOne({token:token})
     .then(result => {
-        if(result.length === 1){
-            res.status(401).json({
+        if(result){
+             return res.status(500).json({
                 message:"Token is invalid"
             })
         }
     })
     .catch(err => {
+        console.log(err);
         res.status(401).json({
             error:err
         })
