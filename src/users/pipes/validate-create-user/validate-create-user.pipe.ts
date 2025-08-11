@@ -10,7 +10,7 @@ export class ValidateCreateUserPipe implements PipeTransform {
     console.log(metadata);
 
     const parseAgeToInt = parseInt(value.role);
-    if(isNaN(parseAgeToInt)){
+    if(!isNaN(parseAgeToInt)){
       console.log(`${value.role} is not a number`);
       throw new HttpException('Invalid Data type for property role',HttpStatus.BAD_REQUEST)
     }
