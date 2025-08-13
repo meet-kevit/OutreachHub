@@ -15,7 +15,7 @@ export class UsersService {
        return;
     }
 
-    getUserById(id){
+    getUserById(id:string){
         return {id,name:'John',role:'Intern'}
     }
 }
